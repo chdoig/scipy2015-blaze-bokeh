@@ -1,7 +1,0 @@
-name: scipy-tutorial
-dependencies:
-  - blaze
-  - bokeh
-  - ipython
-  - ipython-notebook
-  - netcdf4
