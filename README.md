@@ -1,4 +1,5 @@
 # Blaze and Bokeh tutorial, SciPy 2015
+
 Building Python Data Applications with Blaze and Bokeh Tutorial, SciPy 2015
 
 # Setup
@@ -50,4 +51,33 @@ Make sure you have the right environment setup by running the following script:
 ```
 python check_env.py
 ```
+
+# Data
+
+This tutorial will use the following datasets:
+
+- [Berkeley Earth](http://www.berkeleyearth.org)
+- [Sean Lahman Baseball](http://www.seanlahman.com/baseball-archive/statistics/)
+
+# Resources
+
+- [Slides](http://chdoig.github.com/scipy2015-blaze-bokeh)
+
+- Notebooks:
+
+- Docs:
+
+    + [Bokeh](http://bokeh.pydata.org/en/latest/)
+    + [Blaze](http://blaze.pydata.org/en/latest/)
+    + [Odo](http://odo.readthedocs.org/en/latest/)
+    + [Dask](http://dask.readthedocs.org/en/latest/)
+
+
+
+
+
+
+
+
+
 

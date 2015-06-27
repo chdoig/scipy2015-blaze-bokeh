@@ -4,3 +4,4 @@ dependencies:
   - bokeh
   - ipython
   - ipython-notebook
+  - netcdf4
