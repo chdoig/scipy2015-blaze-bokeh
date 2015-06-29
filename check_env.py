@@ -17,9 +17,19 @@ except ImportError:
 try:
     import IPython
     print IPython.__version__
-    assert(IPython.__version__ == '3.1.0')
+    assert(IPython.__version__ == '3.2.0')
 except ImportError:
     print("You need IPython installed, please run: conda install ipython=3.1")
+
+try:
+    import boto
+except ImportError:
+    print("You need boto installed, please run: conda install boto")
+
+try:
+    import netCDF4
+except ImportError:
+    print("You need netCDF4 installed, please run: conda install netcdf4")
 
 
 print("You are good to go :)")

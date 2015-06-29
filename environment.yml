@@ -5,3 +5,4 @@ dependencies:
   - ipython
   - ipython-notebook
   - netcdf4
+  - boto
