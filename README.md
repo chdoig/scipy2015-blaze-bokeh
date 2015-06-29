@@ -76,7 +76,7 @@ This tutorial will use the following datasets:
 Download the datasets *before* attending the tutorial from:
 
 - https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc
-- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlit
+- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite
 
 Move those datasets to the folder ``~/scipy2015-blaze-bokeh/data``
 
