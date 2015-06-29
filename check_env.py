@@ -19,7 +19,7 @@ try:
     print IPython.__version__
     assert(IPython.__version__ == '3.2.0')
 except ImportError:
-    print("You need IPython installed, please run: conda install ipython=3.1")
+    print("You need IPython installed, please run: conda install ipython=3.2")
 
 try:
     import boto
