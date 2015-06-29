@@ -1,8 +1,8 @@
 name: scipy-tutorial
 dependencies:
-  - blaze
-  - bokeh
-  - ipython
+  - blaze=0.8.0
+  - bokeh=0.9.0
+  - ipython=3.2.0
   - ipython-notebook
   - netcdf4
   - boto
