@@ -1,0 +1,166 @@
+/**
+ * Christine's Pydata 2015 Theme, based on White theme for reveal.js. 
+ *
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(http://fonts.googleapis.com/css?family=Homemade+Apple);
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700);
+@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: black;
+
+$mainFontSize: 38px;
+$mainFont: 'Raleway', Helvetica, sans-serif;
+
+$headingFont: 'Shadows Into Light', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 300;
+$linkColor: #b90504;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 1.9em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #b90504;
+	}
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+
+// Reveal overrides ----------------------------
+
+
+.reveal h1,
+.reveal h2 {
+    color: #b90504;
+    //font-family: 'Homemade Apple', cursive;
+    font-family: 'Raleway', Helvetica, sans-serif;
+    font-size: 48px;
+}
+.reveal h5,
+.reveal h6 {
+    color: grey;
+    //font-family: 'Raleway', Helvetica, sans-serif;
+    font-family: 'Homemade Apple', cursive;
+    font-weight: 300;
+}
+
+
+.reveal {
+    position: relative; 
+
+    .slides {
+        text-align: left;
+    }
+    pre {
+        width: 100%;
+        code {
+            display: block;
+            padding: 5px;
+            padding-left: 1em;
+            overflow: auto;
+            max-height: 600px;
+            word-wrap: normal;
+            background: #FCFCFC;
+            color: #000000;
+        }
+    }
+    .highlight {
+        padding: 0 .2em;
+        background-color: #b90504;
+        color: white;
+    }
+
+    .reveal .footer {
+        position: absolute;
+        top: .5em;
+        right: 1em;
+        font-size: 0.8em;
+        margin: 1em;
+    }
+
+    section img {
+        border: none;
+        box-shadow: none;
+    }
+
+    iframe {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    ul {
+        padding-left: 1em;
+        ul {
+            padding-left: 0em;
+            font-size: 0.8em
+        }
+    }
+
+    .side_by_side {
+        width: 45%;
+        display: inline-block;
+        &.left {
+            float: left;
+        }
+        &.right {
+            float: right;
+        }
+    }
+}
+
+/*********************************************
+ * CIRCULAR FRONT IMAGE
+ *********************************************/
+
+.circular {
+    width: 220px;
+    height: 220px;
+    border-radius: 110px;
+    -webkit-border-radius: 110px;
+    -moz-border-radius: 110px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    text-align:center;
+    display:inline-block;
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2); }
+
+.reveal .progress span {
+  background: #b90504;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }

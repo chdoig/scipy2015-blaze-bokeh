@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Building Python Data Applications with Blaze and Bokeh</title>
+
+		<meta name="description" content="SciPy 2015. Building Python Data Applications with Blaze and Bokeh Tutorial">
+		<meta name="author" content="Christine Doig">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/pydata.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<div class="circular" style="background: url(images/ChristineDoig.png) no-repeat; background-position: center; margin-left:40%;"></div	>
+					<h1 style="text-align:center">Building Python Data Applications: <br>with Blaze and Bokeh</h1>
+					<h3 style="text-align:center">SciPy 2015</h3>
+					<h6 style='text-align:right'>by Christine Doig</h6>
+				</section>
+
+				<section>
+					<section>
+						<h2>Introduction</h2>
+					</section>
+
+                    <section>
+                        <h3 style="text-align:center">About me</h3>
+                         <div style="font-size:30px;">
+                        <li>From Barcelona. Living in Austin, TX</li>
+                        <li>Data Scientist at Continuum Analytics</li>
+                        <li>Started M.S. in Data Mining and Business Intelligence, UPC-BCN</li> 
+                        <li>Previously, Process Engineer and Business Analyst</li>
+                        <li>Master Thesis on Voltage Stability at RWTH Aachen, Germany<br>E.ON Energy Research Center</li>
+                        <li>M.S. Industrial Engineering / Automation & Control, UPC-BCN</li></div>
+                        <p><a href="http://chdoig.github.com">http://chdoig.github.com</a></p>
+                    </section>
+
+                    <!--section>
+                        <h3 style="text-align:center">About you</h3>
+                        <h3>Exercise 0 - Icebreaker</h3>
+                        <p>Introduce yourself to 2-3 people sitting near you</p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section-->
+
+                    <section>
+                        <h3 style="text-align:center">About the tutorial</h3>
+                        <ul>
+                            <li>Goals</li>
+                            <li>Method</li>
+                            <li>Setup reminder</li>
+                            <li>Data</li>
+                            <li>Slides</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Goals</h3>
+                            <li><a href="http://bokeh.pydata.org/en/latest/">Bokeh:</a> Build Interactive Data Visualizations for the browser</li>
+                            <li><a href="http://blaze.pydata.org/en/latest/">Blaze:</a> Perform Interactive Analytic Queries for a variety of backends</li>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Method</h3>
+                        <p>Project driven tutorial</p>
+                        <li>Climate App: Berkeley Earth dataset</li>
+                        <li>Baseball App: Lahman dataset</li>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Climate App</h3>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Baseball App</h3>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Method</h3>
+                        <li>Brief section introduction</li>
+                        <li>Documentation and examples link</li>
+                        <li>Exercises - Notebooks</li>
+                        <li>Solutions</li>
+                        <li>Questions</li>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Setup reminder (I)</h3>
+                        <p><a href="https://store.continuum.io/cshop/anaconda/">Anaconda:</a> Python + Conda + a bunch of packages</p>
+                        <pre><code class="prettyprint prettyprinted bash">
+$ conda update conda
+$ conda update anaconda
+                        </code></pre>
+
+                        <p style="text-align:center">or</p>
+                        <p><a href="http://conda.pydata.org/miniconda.html">Miniconda:</a> Python + Conda +</p>
+
+                        <pre><code class="prettyprint prettyprinted bash">
+$ conda env create
+$ source activate scipy-tutorial
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Setup reminder (II)</h3>
+                        <pre><code class="prettyprint prettyprinted bash">
+$ git clone https://github.com/chdoig/scipy2015-blaze-bokeh.git
+$ cd scipy2015-blaze-bokeh
+$ ipython notebook
+                        </code></pre>
+                        <br>
+                        <p style="text-align:center">Bokeh version: 0.9.0</p>
+                        <p style="text-align:center">Blaze version: 0.8.0</p>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Data</h3>
+                        <p><b>Download:</b></p>
+                        <li>Climate App: Berkeley Earth dataset</li>
+                        <p style="font-size:26px"><a href="https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc">https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc</a></p>
+                        <!--p><a href="http://berkeleyearth.lbl.gov/auto/Global/Gridded/Land_and_Ocean_LatLong1.nc">http://berkeleyearth.lbl.gov/auto/Global/Gridded/Land_and_Ocean_LatLong1.nc</a></p-->
+                        <li>Baseball App: Lahman dataset</li>
+                        <p style="font-size:30px"><a href="https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite">https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite</a></p>
+                        <p><b>Move those datasets to the folder:</b> <br>~/scipy2015-blaze-bokeh/data</p>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Slides</h3>
+                        <p><a href="http://chdoig.github.io/scipy2015-blaze-bokeh">http://chdoig.github.io/scipy2015-blaze-bokeh</a></p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Introduction to Bokeh</h2>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">About Bokeh</h3>
+                        <div align="center"><img width="50%"src="images/bokeh.png"></div>
+                      
+                        <div style="font-size:32px;">
+                        <p>Python interactive visualization library that targets modern web browsers for presentation
+                        <br>
+                        <a href="http://bokeh.pydata.org/en/latest/">http://bokeh.pydata.org/en/latest/</a><br>
+                        <img style="vertical-align:middle" class="social-icon" src="images/twitter-icon.png"><a href="https://twitter.com/BokehPlots">@BokehPlots</a>
+                        <img style="vertical-align:middle" class="social-icon" src="images/github-icon.png"><a href="https://github.com/bokeh">Bokeh organization</a></p>
+                        </p>
+                    </section>
+
+                    <section>
+                        <img src="images/intro-bokeh.png">
+                    </section>
+
+                    <section>
+                        <img src="images/bokehjs.png">
+                    </section>
+
+                    <section>
+                        <img src="images/tutorial.png">
+                    </section>
+
+                    <section>
+                        <img src="images/sections-notebooks.png">
+                    </section>
+
+				</section>
+
+                 <section>
+                    <section>
+                        <h2>Charts</h2>
+                    </section>
+                    <section>
+                        <img src="images/charts-section.png">
+                    </section>
+                    <section>
+                        <img src="images/charts.png">
+                    </section>
+                    <section>
+                        <img src="images/charts-example.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/charts.html">http://bokeh.pydata.org/en/latest/docs/user_guide/charts.html</a></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/charts">Examples</a></li>
+                    </section>
+                    <section>
+                        <img src="images/charts-exercise-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <p><b>Visualize the evolution of the temperature anomaly monthly average over time with a timeseries chart</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/charts-solution-1.png"></div>
+                    </section>
+                    <section>
+                        <img src="images/charts-styling-section.png">
+                    </section>
+                    <section>
+                        <div align="center">
+                            <img src="images/charts-styling.png">
+                        </div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <p><b>Style your plot</b></p>
+                        <p>Ideas:</p>
+                            <li>Add a title</li>
+                            <li>Add axis labels</li>
+                            <li>Change width and height</li>
+                            <li>Deactivate toolbox or customize available tools</li>
+                            <li>Change line color</li>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/charts-solution-2.png"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <p><b>Add the moving annual average to your chart</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.1 Charts - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/charts-solution-3.png"></div>
+                    </section>
+                </section>
+
+                 <section>
+                    <section>
+                        <h2>Plotting</h2>
+                    </section>
+                    <section>
+                        <img src="images/plotting-section.png">
+                    </section>
+                     <section>
+                        <img src="images/plotting.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/plotting.html">http://bokeh.pydata.org/en/latest/docs/user_guide/plotting.html</a></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/plotting">Examples</a></li>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <p><b>Reproduce the timeseries chart using the plotting interface</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="50%" src="images/plotting-solution-1.png"></div>
+                    </section>
+                    <section>
+                        <img src="images/plotting-styling-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Plotting - Styling</h3>
+                        <p style="font-size:32px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/styling.html">http://bokeh.pydata.org/en/latest/docs/user_guide/styling.html</a></p>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <p><b>Style the plot appropriately</b></p>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-2.png"></div>
+                    </section>
+                    <section>
+                        <img src="images/plotting-tools-section.png">
+                    </section>
+                    <section>
+                        <img style="width:70%" src="images/tools.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Plotting - Tools</h3>
+                        <p style="font-size:32px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/tools.html">http://bokeh.pydata.org/en/latest/docs/user_guide/tools.html</a></p>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <p><b>Add a crosshair and hover tool to the plot</b></p>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-3.png"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <p><b>[OPTIONAL] Style the hover tooltip</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.2 Plotting - Timeseries.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-4.png"></div>
+                    </section>
+                    <section>
+                        <img src="images/plotting-map-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.3 Plotting - Worldmap.ipynb</p>
+                        <p><b>Draw a worldmap with the plotting interface</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.3 Plotting - Worldmap.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-5.png"></div>
+                    </section>
+                    <section>
+                        <img src="images/plotting-climate-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.4 Plotting - Climate.ipynb</p>
+                        <p><b>Plot temperature anomaly monthly average for a given year and month by lat/lon with bokeh.plotting.image_rgba()</b></p>
+                        <h6 style='text-align:right'>15 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.4 Plotting - Climate.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-6.png"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.4 Plotting - Climate.ipynb</p>
+                        <p><b>Overlay the worldmap boundaries in the temperature image plot</b></p>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.4 Plotting - Climate.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/plotting-solution-7.png"></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Models</h2>
+                    </section>
+                    <section>
+                        <img src="images/models-section.png">
+                    </section>
+                    <section>
+                        <img src="images/models1.png">
+                    </section>
+                    <section>
+                        <img src="images/models2.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/reference/models.html">http://bokeh.pydata.org/en/latest/docs/reference/models.html</a></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/glyphs">Examples</a></li>
+                    </section>
+                    <section>
+                        <img src="images/models-legend-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.5 Glyphs - Legend.ipynb</p>
+                        <p><b> Create a legend plot for the temperature map with the Glyph interface</b></p>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.5 Glyphs - Legend.ipynb</p>
+                        <div align="center">
+                        <img width="10%" src="images/models-solution-1.png"></div>
+                    </section>
+                </section>
+
+                 <section>
+                    <section>
+                        <h2>Output</h2>
+                    </section>
+                    <section>
+                        <img src="images/output-section.png">
+                    </section>
+                    <section>
+                        <img src="images/output.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:22px"><a href="http://bokeh.pydata.org/en/latest/docs/reference/resources_embedding.html#bokeh-io">http://bokeh.pydata.org/en/latest/docs/reference/resources_embedding.html#bokeh-io</a></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/plotting">Plotting examples</a></li>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/charts">Chart examples</a></li>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Layout</h2>
+                    </section>
+                    <section>
+                        <img src="images/layout-section.png">
+                    </section>
+                    <section>
+                        <img src="images/layouts.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/layout.html">http://bokeh.pydata.org/en/latest/docs/user_guide/layout.html</a></p>
+                    </section>
+                    <section>
+                        <img src="images/layout-exercise-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.6 Layout.ipynb</p>
+                        <p><b>Wrap your visualizations in functions</b><br>
+                        Wrap each of the previous visualizations in a function in a python file (e.g. viz.py):
+                        <li>Climate + Map: climate_map()</li>
+                        <li>Legend: legend()</li>
+                        <li>Timeseries: timeseries()</li></p>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.6 Layout.ipynb</p>
+                        <p><b>Layout your plots using hplot and vplot</b><br>
+                        <h6 style='text-align:right'>5 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.6 Layout.ipynb</p>
+                        <div align="center">
+                        <img width="80%" src="images/layout-solution-1.png"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.6 Layout.ipynb</p>
+                        <p><b>Store your layout in an html page</b><br>
+                        <h6 style='text-align:right'>2 min</h6>
+                    </section>
+
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>Server</h2>
+                    </section>
+                    <section>
+                        <img src="images/server-section.png">
+                    </section>
+                    <section>
+                        <img src="images/server-1.png">
+                    </section>
+                    <section>
+                        <img src="images/server-2.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/reference/plot_objects.html">http://bokeh.pydata.org/en/latest/docs/reference/plot_objects.html</a></p>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/server.html">http://bokeh.pydata.org/en/latest/docs/user_guide/server.html</a></p>
+                        <p><b>Examples:</b></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/plotting/server">Plotting</a></li>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/charts/server">Charts</a></li>
+             
+                    </section>
+                    <section>
+                        <img src="images/server-exercise-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate.ipynb</p>
+                        <p><b>Animate the climate map</b><br>
+                        <h6 style='text-align:right'>20 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate.ipynb</p>
+                        <div align="center">
+                        <img src="images/animate-solution.gif"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate - optional.ipynb</p>
+                        <p><b>[OPTIONAL] Add a title plot for the app with month and year that gets updated with the plot animation</b><br>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate - optional.ipynb</p>
+                        <div align="center">
+                        <img src="images/animate-solution-2.gif"></div>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate - optional 2.ipynb</p>
+                        <p><b>[OPTIONAL] Animate the timeseries plot</b><br>
+                        <h6 style='text-align:right'>10 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.7 Animate - optional 2.ipynb</p>
+                        <div align="center">
+                        <img src="images/animate-solution-3.gif"></div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Interactions</h2>
+                    </section>
+                    <section>
+                        <img src="images/interactions-section.png">
+                    </section>
+                    <section>
+                        <img src="images/interactions.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <p style="font-size:30px"><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/interaction.html">http://bokeh.pydata.org/en/latest/docs/user_guide/interaction.html</a></p>
+                        <p><b>Examples:</b></p>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/glyphs/population_server.py">Population Server</a></li>
+                       <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/glyphs/taylor_server.py">Taylor Server</a></li>
+                    </section>
+                    <section>
+                        <img src="images/interactions-exercise-section.png">
+                    </section>
+
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.8 Animate Advanced</p>
+                        <p><b>[OPTION A] Add a play and stop button</b><br>
+                        <p><b>[OPTION B] Add sliders to select the year and month</b><br>
+                        <h6 style='text-align:right'>15 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.8 Animate Advanced</p>
+                        <div align="center">
+                    </section>
+
+                </section>
+
+                 <section>
+                    <section>
+                        <h2>Embed</h2>
+                    </section>
+                    <section>
+                        <img src="images/embed-section.png">
+                    </section>
+                    <section>
+                        <img src="images/embed.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <li><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/embed.html">Documentation</a></li>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/embed">Examples</a></li>
+                    </section>                    
+                    <section>
+                        <img src="images/embed-exercise-section.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercise</h3>
+                        <p>1.9 Embed</p>
+                        <p><b>[Exercise 1] Embed the original static layout into a flask app</b><br>
+                        <p><b>[Exercise 2] Embed your interactive app into a flask application</b><br>
+                        <h6 style='text-align:right'>15 min</h6>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>1.9 Embed</p>
+                        <div align="center">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Compat</h2>
+                    </section>
+                    <section>
+                        <img src="images/compat.png">
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Resources</h3>
+                        <li><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/compat.html">Documentation</a></li>
+                        <li><a href="https://github.com/bokeh/bokeh/tree/0.9.0/examples/compat">Examples</a></li>
+                    </section>
+                </section>
+
+                 <section>
+                    <section>
+                        <h2>Bokeh Summary</h2>
+                    </section>
+                    <section>
+                        <img src="images/embed-exercise-section.png">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Introduction to Blaze</h2>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>2. Blaze.ipynb</p>
+                        <div align="center">
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Final Exercise / Homework</h2>
+                    </section>
+                    <section>
+                        <h3 style="text-align:center">Exercises</h3>
+                        <p>Create a Baseball application (Lahman dataset) with Blaze and Bokeh</p>
+                    </section>
+                </section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>Slides: <br><a href="http://chdoig.github.com/scipy2015-blaze-bokeh">http://chdoig.github.com/scipy2015-blaze-bokeh</a></p>
+					<p>Email: <a>christine.doig@continuum.io</a></p>
+					<p>Twitter: <a href="http://twitter.com/ch_doig">ch_doig</a></p>
+				</section>
+			</div>
+
+
+		<div class="footer">
+			<div style="text-align:left; float:left; width:15%; margin-left:2%; margin-top:1%">				
+					<img src="images/continuum_analytics_b&w.png">
+				</div>
+			<div style="text-align:right; float:right; margin-right:5%; margin-top:1%">
+				<p style=" font-size:24px; height:36px"><img style="vertical-align:middle" class="social-icon" src="images/twitter-icon.png"><a href="https://twitter.com/ch_doig"> ch_doig</a>
+		        <img style="vertical-align:middle" class="social-icon" src="images/github-icon.png"><a href="https://github.com/chdoig"> chdoig </a></p>
+	        </div>
+        </div>
+
+		</div>
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,164 @@
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Glegoo|Quicksand:300,400,700|Droid+Serif:400,700,400italic,700italic|Raleway:400,200,300,500,600,700);
+/**
+ * A pyladies theme for reveal.js presentations, similar
+ * to the default theme. The accent color is rgb(255, 50, 50).
+ *
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  background: white;
+  background-color: white; }
+
+.reveal {
+  font-family:'Quicksand',sans-serif;;
+  font-size: 36px;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  color: black; }
+
+::selection {
+  color: white;
+  background: rgba(0, 0, 0, 0.99);
+  text-shadow: none; }
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: 0 0 20px 0;
+  color: #444444;
+  font-family: 'Glegoo', serif;
+  line-height: 0.9em;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: none; }
+
+.reveal h1 {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); }
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a:not(.image) {
+  color: rgb(255, 50, 50);
+  border-bottom: 1px dashed #aaa;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  -ms-transition: color .15s ease;
+  -o-transition: color .15s ease;
+  transition: color .15s ease; }
+
+.reveal a:not(.image):hover {
+  color: rgb(255, 50, 50);
+  text-shadow: none;
+  border: none; }
+
+.reveal .roll span:after {
+  color: #fff;
+  background: #00003f; }
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  margin: 15px 0px;
+  background: rgba(255, 255, 255, 0.12);
+ }
+
+.reveal a:hover img {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgb(255, 50, 50);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls div.navigate-left,
+.reveal .controls div.navigate-left.enabled {
+  border-right-color: rgb(255, 50, 50); }
+
+.reveal .controls div.navigate-right,
+.reveal .controls div.navigate-right.enabled {
+  border-left-color: rgb(255, 50, 50); }
+
+.reveal .controls div.navigate-up,
+.reveal .controls div.navigate-up.enabled {
+  border-bottom-color: rgb(255, 50, 50); }
+
+.reveal .controls div.navigate-down,
+.reveal .controls div.navigate-down.enabled {
+  border-top-color: rgb(255, 50, 50); }
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: rgb(255, 75, 75); }
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: rgb(255, 75, 75); }
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: rgb(255, 75, 75); }
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: rgb(255, 75, 75); }
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2); }
+
+.reveal .progress span {
+  background: rgb(255, 50, 50);
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
+
+/*********************************************
+ * SLIDE NUMBER
+ *********************************************/
+.reveal .slide-number {
+  color: rgb(255, 50, 50); }
+
+/*********************************************
+ * PERSONALIZED PYLADIES
+ *********************************************/
+.div.text_cell_render {
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 5px;
+  color: #000000;
+  }
+/*********************************************
+ * TRANSITION PYLADIES
+ *********************************************/
+
+.reveal.cube .slides section:not(.stack):before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: white;
+  border-radius: 4px;
+  -webkit-transform: translateZ(-20px);
+  -moz-transform: translateZ(-20px);
+  -ms-transform: translateZ(-20px);
+  -o-transform: translateZ(-20px);
+  transform: translateZ(-20px);
+}
