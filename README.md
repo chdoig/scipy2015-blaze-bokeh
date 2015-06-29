@@ -18,20 +18,28 @@ After following the instructions, you should be ready to go. Check it with:
 python check_env.py
 ```
 
-If you already have Anaconda installed, make sure to update both conda and anaconda 
+If you already have Anaconda installed, make sure to update both conda and the dependencies
 to the latest versions, by running:
 
 ```
 conda update conda
-conda update anaconda
+conda install bokeh=0.9
+conda install blaze=0.8
+conda install ipython=3.2
+conda install netcdf4
 ```
 
-- **Option B: Miniconda**
+- **Option B: Miniconda or Conda Environments**
 
-If you want a lightweight alternative to Anaconda, you can install Miniconda from 
-[here](http://conda.pydata.org/miniconda.html).
+If you want one the following:
 
-After cloning this repository, run the following commands:
+- a lightweight alternative to Anaconda, you can install Miniconda from 
+[here](http://conda.pydata.org/miniconda.html). 
+
+or 
+- isolate this scipy tutorial dependencies from your default Anaconda by using conda environments.
+
+Follow this commands after cloning this repository:
 
 ```
 cd scipy2015-blaze-bokeh
