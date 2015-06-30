@@ -76,15 +76,15 @@ and run all the cells.
 
 # Data
 
-This tutorial will use the following datasets:
+This tutorial will be using datasets from the following projects:
 
-- [Berkeley Earth](http://www.berkeleyearth.org) ~400MB
-- [Sean Lahman Baseball](http://www.seanlahman.com/baseball-archive/statistics/) ~50MB
+- [Berkeley Earth](http://www.berkeleyearth.org)
+- [Sean Lahman Baseball](http://www.seanlahman.com/baseball-archive/statistics/)
 
-Download the datasets *before* attending the tutorial from:
+For your convenience I have uploaded the datasets we are going to use directly to s3. Download the datasets *before* attending the tutorial from:
 
-- https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc
-- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite
+- https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc ~400MB
+- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite ~50MB
 
 Move those datasets to the folder ``~/scipy2015-blaze-bokeh/data``
 
