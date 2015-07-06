@@ -14,7 +14,8 @@ class RGBAColorMapper(object):
  
     def __init__(self, low, high, palette):
         self.range = np.linspace(low, high, len(palette))
-        self.r, self.g, self.b = np.array(zip(*[hex_to_rgb(i) for i in palette]))
+        # self.r, self.g, self.b = np.array(zip(*[hex_to_rgb(i) for i in palette])) #python 2.7
+        self.r, self.g, self.b = np.array(list(zip(*[hex_to_rgb(i) for i in palette])))
     
     def color(self, data):
         """Maps your data values to the pallette with linear interpolation"""
