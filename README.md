@@ -18,20 +18,28 @@ After following the instructions, you should be ready to go. Check it with:
 python check_env.py
 ```
 
-If you already have Anaconda installed, make sure to update both conda and anaconda 
+If you already have Anaconda installed, make sure to update both conda and the dependencies
 to the latest versions, by running:
 
 ```
 conda update conda
-conda update anaconda
+conda install bokeh=0.9
+conda install blaze=0.8
+conda install ipython=3.2
+conda install netcdf4
 ```
 
-- **Option B: Miniconda**
+- **Option B: Miniconda or Conda Environments**
 
-If you want a lightweight alternative to Anaconda, you can install Miniconda from 
-[here](http://conda.pydata.org/miniconda.html).
+If you want one the following:
 
-After cloning this repository, run the following commands:
+- a lightweight alternative to Anaconda, you can install Miniconda from 
+[here](http://conda.pydata.org/miniconda.html). 
+
+or 
+- isolate this scipy tutorial dependencies from your default Anaconda by using conda environments.
+
+Follow this commands after cloning this repository:
 
 ```
 cd scipy2015-blaze-bokeh
@@ -68,15 +76,15 @@ and run all the cells.
 
 # Data
 
-This tutorial will use the following datasets:
+This tutorial will be using datasets from the following projects:
 
-- [Berkeley Earth](http://www.berkeleyearth.org) ~400MB
-- [Sean Lahman Baseball](http://www.seanlahman.com/baseball-archive/statistics/) ~50MB
+- [Berkeley Earth](http://www.berkeleyearth.org)
+- [Sean Lahman Baseball](http://www.seanlahman.com/baseball-archive/statistics/)
 
-Download the datasets *before* attending the tutorial from:
+For your convenience I have uploaded the datasets we are going to use directly to s3. Download the datasets *before* attending the tutorial from:
 
-- https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc
-- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlit
+- https://s3.amazonaws.com/scipy-blaze-bokeh/Land_and_Ocean_LatLong1.nc ~400MB
+- https://s3.amazonaws.com/scipy-blaze-bokeh/lahman2013.sqlite ~50MB
 
 Move those datasets to the folder ``~/scipy2015-blaze-bokeh/data``
 
